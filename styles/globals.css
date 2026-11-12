@@ -1,0 +1,42 @@
+@import "tailwindcss";
+@import "lenis/dist/lenis.css";
+
+@theme {
+  --color-blue: #315bdb;
+  --color-blue-deep: #2447a8;
+  --color-navy: #101a35;
+  --color-sky: #dce6ff;
+  --color-ink: #171717;
+  --font-sans: var(--font-geist), Inter, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Lenis animates anchor jumps; native fallback (reduced motion) just needs the offset. */
+html { scroll-padding-top: 4rem; -webkit-text-size-adjust: 100%; }
+body { background: #fff; color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: var(--color-blue); color: #fff; }
+
+:focus-visible { outline: 3px solid var(--color-blue); outline-offset: 3px; border-radius: 6px; }
+.on-dark :focus-visible { outline-color: #fff; }
+
+.display { letter-spacing: -0.045em; line-height: 0.95; font-weight: 700; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; }
+
+/* animated blue highlight on the hero's last line */
+@keyframes shine { to { background-position: 200% center; } }
+.shine {
+  background: linear-gradient(100deg, #2447a8 0%, #4f7bff 30%, #315bdb 50%, #2447a8 70%, #4f7bff 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shine 7s linear infinite;
+}
+@keyframes drift { from { transform: translate3d(0,0,0); } to { transform: translate3d(-35%,0,0); } }
+.drift { animation: drift 140s linear infinite; will-change: transform; }
+@keyframes scrollcue { 0% { transform: translateY(-100%); } 100% { transform: translateY(260%); } }
+.scrollcue { animation: scrollcue 2.2s var(--ease-out-expo) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .shine, .drift, .scrollcue { animation: none; }
+  .shine { background-position: 50% center; }
+}

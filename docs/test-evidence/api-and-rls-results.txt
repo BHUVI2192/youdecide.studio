@@ -1,0 +1,32 @@
+PASS | RLS: anon cannot read enquiries | HTTP 401
+PASS | RLS: anon cannot read contributions table | HTTP 401
+PASS | RLS: anon cannot read admin_users | HTTP 401
+PASS | RLS: anon cannot read contribution_private | HTTP 401
+PASS | RLS: anon can insert an enquiry | HTTP 201
+PASS | RLS: anon cannot insert enquiry with admin-only fields set | HTTP 401
+PASS | Service role can seed contributions
+PASS | DB constraint: publish without consent rejected even for service role | new row for relation "contributions" violates check constraint "published_requires_consent"
+PASS | View: anon sees only published+consented rows | Anonymous, TEST Published Co
+PASS | View: anonymous row masks name, project and link
+PASS | View: anon cannot DELETE through the view | HTTP 401
+PASS | View: anon cannot UPDATE through the view | HTTP 401
+PASS | RLS: signed-in non-admin sees 0 contributions
+PASS | RLS: signed-in non-admin sees 0 enquiries
+PASS | RLS: signed-in non-admin cannot insert contribution | HTTP 403
+PASS | RLS: non-admin cannot add themselves to admin_users | HTTP 403
+PASS | RLS: admin JWT reads all contributions
+PASS | Enquiry API: invalid input → 422 with per-field errors
+PASS | Enquiry API: honeypot submission accepted silently, nothing stored
+PASS | Enquiry API: valid enquiry stored in DB
+PASS | Enquiry API: email sent via Nodemailer SMTP, status = sent
+PASS | Email: delivered to CONTACT_EMAIL with Reply-To = visitor | New enquiry: Small business website — Asha Rao
+PASS | Enquiry API: raw IP not stored (hash only)
+PASS | Enquiry API: HTML in description accepted as plain text
+PASS | Rate limit (DB): 4th enquiry from same email within an hour → 429 | HTTP 429
+PASS | Rate limit (memory): 6th request from one IP → 429 | 200,200,200,200,200,429 (re-run with a fresh IP; first attempt reused an IP already limited by the previous run)
+PASS | Enquiry API: malformed JSON → 400
+PASS | Admin API: no session → 401 | HTTP 401
+PASS | Admin API: unauthenticated DELETE enquiry → 401
+PASS | /admin without session redirects to /admin/login
+PASS | Homepage HTML never contains private/unpublished names
+PASS | Enquiry survives SMTP outage: saved with email_delivery_status=failed, error 'connect ECONNREFUSED' recorded, visitor still sees success

@@ -1,0 +1,45 @@
+PASS | Homepage loads with no console/page errors
+PASS | Lenis active (html.lenis class set)
+PASS | All anchor sections present | top,belief,build,how,trust,contact
+PASS | 8 sections render in order (hero→footer)
+PASS | Lenis: nav anchor click animates scroll (intermediate positions observed) | 1045→1667→2125→2362→2495→2565→2587→2592
+PASS | Lenis: anchor lands on #how below the fixed nav | section top = 64px
+PASS | Scroll progress bar tracks scroll
+PASS | Nav becomes solid after scrolling
+PASS | Calendly links: correct URL, new tab, noopener | 3 links
+PASS | Hero primary CTA targets #contact
+PASS | Scroll reveal: service cards visible after scrolling into view
+PASS | Leaderboard shows published rows from the database | Anonymous | TEST Published Co
+PASS | Leaderboard hides private / unconsented / anonymous identities
+PASS | Leaderboard sort toggle works (aria-pressed + order) | latest: Anonymous | TEST Published Co
+PASS | INR formatting
+PASS | Form UI: empty submit shows validation errors
+PASS | Form UI: valid submit shows success message and resets
+PASS | Mobile: no horizontal overflow at 390px
+PASS | Mobile: menu opens with all 5 links
+PASS | Mobile: Escape closes the menu
+PASS | Mobile: touch targets ≥ 44px on primary controls
+PASS | Responsive: no horizontal overflow at 768px
+PASS | Responsive: no horizontal overflow at 1024px
+PASS | Reduced motion: Lenis not started, CSS animations off
+PASS | Admin login: wrong password rejected with message
+PASS | Admin: valid login that is NOT in admin_users is refused the dashboard
+PASS | Admin API: signed-in non-admin → 403 | HTTP 403
+PASS | Admin API: non-admin cannot create a contribution → 403
+PASS | Admin: admin login reaches the dashboard overview
+PASS | Admin overview: stats computed from DB | {"Total contributions":"₹20,100","Projects":"4","Average contribution":"₹5,025","Published on the wall":"2","Total enquiries":"11","Pending enquiries":"11"}
+PASS | Admin UI: Publish checkbox is locked until consent is recorded
+PASS | Admin UI: add contribution (with consent + publish) saves
+PASS | Admin API: publish without consent rejected server-side | 422 Cannot publish without recorded consent
+PASS | Public wall updates immediately after admin publishes (revalidate)
+PASS | Admin UI: switching an entry to Private removes it from the public wall
+PASS | Admin UI: edit contribution amount
+PASS | Admin UI: delete contribution
+PASS | Admin UI: public wall preview renders published rows only
+PASS | Admin enquiries: table lists stored enquiries incl. email delivery status
+PASS | Admin enquiries: search filters rows
+PASS | Admin enquiries: status change + internal notes persist after reload
+PASS | Admin enquiries: status filter
+PASS | Admin enquiries: delete (spam) enquiry
+PASS | Admin: sign out ends the session (API → 401) | HTTP 401
+PASS | No uncaught browser errors during the whole run (expected 4xx from negative tests excluded)
